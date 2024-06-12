@@ -1,6 +1,6 @@
 ## react-tourist-attraction-mini-project
 
-#Features
+### Features
 - Search bar
 - Auto search by tags feature
 - Expandable description
