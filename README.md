@@ -7,6 +7,8 @@
 - Copy to clipboard
 
 ### Author
-- GitHub: [Jirayu Supasil](https://github.com/jsupasil)
+- GitHub: [Jirayu Supasil | GitHub](https://github.com/jsupasil)
+- Medium: [Jirayu Supasil | Medium](https://medium.com/@charliehii?)
+- Linkedin: [Jirayu Supasil | Linkedin]
 
 
