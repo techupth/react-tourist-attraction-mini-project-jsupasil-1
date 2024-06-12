@@ -27,6 +27,7 @@ function App() {
           <h2 className=" text-sm">ค้นหาที่เที่ยว</h2>
           <input
             placeholder="หาที่เที่ยวแล้วไปกัน ..."
+            value={searchText}
             onChange={(event) => setSearchText(event.target.value)}
             className="text-center text-sm w-full border-b-2"
           />
@@ -60,7 +61,10 @@ function App() {
                   <p>
                     <span>{item.description.slice(0, 100)}</span>
                     <button
-                      onClick={() => setIsContinueReading(!isContinueReading)}
+                      onClick={() => {
+                        setIsContinueReading(!isContinueReading);
+                        open(item.url, "_blank");
+                      }}
                       className=" text-blue-400"
                     >
                       ... อ่านต่อ
@@ -76,7 +80,7 @@ function App() {
                       {" "}
                       และ{" "}
                       <a
-                        href={`https://www.google.com/search?q=${tag}`}
+                        onClick={() => setSearchText(searchText + " " + tag)}
                         target="_blank"
                         className=" underline"
                       >
@@ -87,7 +91,7 @@ function App() {
                     <span key={tagIndex}>
                       {" "}
                       <a
-                        href={`https://www.google.com/search?q=${tag}`}
+                        onClick={() => setSearchText(searchText + " " + tag)}
                         target="_blank"
                         className=" underline"
                       >
@@ -108,7 +112,7 @@ function App() {
               </div>
               <button
                 className="absolute right-2 bottom-2 rounded-full"
-                onClick={() => open(item.url, "_blank")}
+                onClick={() => navigator.clipboard.writeText(item.url)}
               >
                 Click Me
               </button>
