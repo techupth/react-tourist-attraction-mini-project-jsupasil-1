@@ -6,4 +6,7 @@
 - Expandable description
 - Copy to clipboard
 
-https://github.com/jsupasil
+### Author
+- GitHub: [Jirayu Supasil](https://github.com/jsupasil)
+
+
