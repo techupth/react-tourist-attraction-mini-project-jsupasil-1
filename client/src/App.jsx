@@ -5,14 +5,16 @@ import axios from "axios";
 function App() {
   const [searchText, setSearchText] = useState("");
   const [touristData, setTouristData] = useState([]);
-  const [isContinueReading, setIsContinueReading] = useState(false);
+  const [isContinueReading, setIsContinueReading] = useState([]);
   const getTouristData = async () => {
     const result = await axios.get(
       `http://localhost:4001/trips?keywords=${searchText}`
     );
-    console.log(result.data.data);
     setTouristData(result.data.data);
   };
+  useEffect(() => {
+    setIsContinueReading(touristData.map((item) => false));
+  }, [touristData]);
   useEffect(() => {
     getTouristData();
   }, [searchText]);
@@ -35,22 +37,29 @@ function App() {
       </header>
       {/* description eid photos tags title url */}
       <main className="px-10 w-full">
-        {touristData.map((item) => (
-          <div key={item.eid} className="flex mt-10 gap-8">
+        {touristData.map((item, index) => (
+          <div key={item.eid} className="flex mt-10 gap-8 items-center">
             <img
               src={item.photos[0]}
-              className="w-[305px] h-[215px] rounded-3xl object-cover"
+              className="rounded-3xl object-cover"
+              width={305}
+              height={215}
             />
             <article className="text-gray-500 relative">
               <h3 className=" text-xl font-bold text-black">{item.title}</h3>
               <div className=" text-sm ">
                 {item.description.length <= 100 ? (
                   <p>{item.description}</p>
-                ) : isContinueReading ? (
+                ) : isContinueReading[index] ? (
                   <p>
                     <span>{item.description} </span>
                     <button
-                      onClick={() => setIsContinueReading(!isContinueReading)}
+                      onClick={() => {
+                        setIsContinueReading(
+                          isContinueReading.toSpliced(index, 1, false)
+                        );
+                        console.log(isContinueReading);
+                      }}
                       className=" text-blue-400"
                     >
                       {" "}
@@ -62,8 +71,10 @@ function App() {
                     <span>{item.description.slice(0, 100)}</span>
                     <button
                       onClick={() => {
-                        setIsContinueReading(!isContinueReading);
-                        open(item.url, "_blank");
+                        setIsContinueReading(
+                          isContinueReading.toSpliced(index, 1, true)
+                        );
+                        // open(item.url, "_blank");
                       }}
                       className=" text-blue-400"
                     >
@@ -80,7 +91,9 @@ function App() {
                       {" "}
                       และ{" "}
                       <a
-                        onClick={() => setSearchText(searchText + " " + tag)}
+                        onClick={() => {
+                          setSearchText(searchText + " " + tag);
+                        }}
                         target="_blank"
                         className=" underline"
                       >
@@ -111,10 +124,10 @@ function App() {
                 ))}
               </div>
               <button
-                className="absolute right-2 bottom-2 rounded-full"
+                className="absolute w-12 h-12 right-2 bottom-2 rounded-full bg-blue-500 text-white"
                 onClick={() => navigator.clipboard.writeText(item.url)}
               >
-                Click Me
+                Link
               </button>
             </article>
           </div>
