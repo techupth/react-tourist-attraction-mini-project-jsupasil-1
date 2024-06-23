@@ -8,7 +8,7 @@
 
 ### Author
 - GitHub: [Jirayu Supasil | GitHub](https://github.com/jsupasil)
-- Medium: [Jirayu Supasil | Medium](https://medium.com/@charliehii?)
-- Linkedin: [Jirayu Supasil | Linkedin]
+- Medium: [Jirayu Supasil | Medium]([https://medium.com/@charliehii?](https://medium.com/@jsupasil/)
+- Linkedin: [Jirayu Supasil | Linkedin](https://www.linkedin.com/in/jirayu-supasil-858265181/)
 
 
